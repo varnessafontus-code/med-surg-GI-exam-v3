@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GI/Hepatobiliary Mock NCLEX Exam — Ch. 45-52</title>
+<style>
+:root{
+  --navy:#1F3864; --blue:#2E75B6; --orange:#C55A11; --red:#C00000;
+  --green:#1E7145; --bg:#F4F6F8; --card:#FFFFFF; --ink:#1A1A1A; --muted:#5B6B7A;
+  --border:#DCE3E9;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--ink);}
+header{background:var(--navy);color:#fff;padding:18px 20px;position:sticky;top:0;z-index:20;}
+header h1{margin:0;font-size:1.25rem;}
+header p{margin:4px 0 0;font-size:0.85rem;color:#c9d6e8;}
+.wrap{max-width:820px;margin:0 auto;padding:16px;}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+
+/* Setup screen */
+#setupScreen .catgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin:12px 0;}
+.catbtn{border:1.5px solid var(--border);background:#fff;border-radius:8px;padding:10px;cursor:pointer;font-size:0.85rem;text-align:left;}
+.catbtn.active{border-color:var(--blue);background:#EAF2FB;font-weight:600;}
+.startbtn{background:var(--navy);color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:1rem;cursor:pointer;font-weight:600;}
+.startbtn:hover{background:var(--blue);}
+.smallbtn{background:#fff;border:1.5px solid var(--border);color:var(--navy);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:0.85rem;}
+.smallbtn:hover{border-color:var(--blue);}
+
+/* Progress */
+.progressBar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:10px;}
+.progressFill{height:100%;background:var(--blue);transition:width .3s;}
+.progressText{font-size:0.8rem;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:14px;}
+
+/* Question */
+.tag{display:inline-block;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em;font-weight:700;padding:3px 9px;border-radius:20px;margin-bottom:10px;}
+.tag.ngn{background:#FDEBD8;color:var(--orange);}
+.tag.mc{background:#E4ECF5;color:var(--navy);}
+.stem{font-size:1.02rem;line-height:1.5;margin-bottom:10px;font-weight:500;}
+.labs{background:#F0F4F8;border-left:4px solid var(--blue);padding:10px 14px;border-radius:6px;margin-bottom:14px;font-size:0.88rem;}
+.labs table{width:100%;border-collapse:collapse;}
+.labs td{padding:2px 6px;font-size:0.85rem;}
+.labs td.val{font-weight:700;color:var(--red);}
+.labs .normal{color:var(--muted);font-size:0.78rem;}
+
+.opt{display:block;width:100%;text-align:left;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:11px 14px;margin-bottom:8px;cursor:pointer;font-size:0.92rem;transition:.15s;}
+.opt:hover{border-color:var(--blue);}
+.opt.selected{border-color:var(--blue);background:#EAF2FB;}
+.opt.correct{border-color:var(--green);background:#E6F4EA;}
+.opt.incorrect{border-color:var(--red);background:#FBEAEA;}
+.opt.disabled{cursor:default;}
+.opt .oletter{font-weight:700;margin-right:8px;color:var(--muted);}
+
+.checkbox-row{display:flex;align-items:flex-start;gap:8px;}
+.checkbox-row input{margin-top:3px;}
+
+/* bowtie / matrix layout */
+.bowtie{display:flex;flex-direction:column;gap:16px;}
+.bowtie-col h4{margin:0 0 8px;font-size:0.8rem;text-transform:uppercase;color:var(--navy);letter-spacing:.03em;}
+.matrixTable{width:100%;border-collapse:collapse;font-size:0.85rem;}
+.matrixTable th, .matrixTable td{border:1px solid var(--border);padding:8px;text-align:left;}
+.matrixTable th{background:#F0F4F8;color:var(--navy);}
+.matrixTable td.stmt{width:42%;}
+.matrixTable td.pick{text-align:center;cursor:pointer;}
+.matrixTable td.pick.selected{background:#EAF2FB;}
+.matrixTable td.pick.correct{background:#E6F4EA;}
+.matrixTable td.pick.incorrect{background:#FBEAEA;}
+
+.cloze-sentence{font-size:1rem;line-height:2.2;}
+.cloze-sentence select{font-size:0.95rem;padding:4px 6px;border:1.5px solid var(--blue);border-radius:6px;background:#fff;margin:0 2px;}
+.cloze-sentence select.correct{border-color:var(--green);background:#E6F4EA;}
+.cloze-sentence select.incorrect{border-color:var(--red);background:#FBEAEA;}
+
+/* rationale */
+.rationaleBox{margin-top:16px;border-top:2px solid var(--border);padding-top:14px;}
+.rationaleBox h4{margin:0 0 8px;color:var(--navy);font-size:0.9rem;}
+.ratItem{padding:8px 10px;border-radius:6px;margin-bottom:6px;font-size:0.87rem;line-height:1.45;}
+.ratItem.right{background:#E6F4EA;border-left:4px solid var(--green);}
+.ratItem.wrong{background:#F7F8F9;border-left:4px solid var(--border);}
+.overallRat{background:#FFF8ED;border-left:4px solid var(--orange);padding:10px 12px;border-radius:6px;font-size:0.88rem;line-height:1.5;margin-top:8px;}
+
+.actions{display:flex;justify-content:space-between;margin-top:16px;gap:10px;flex-wrap:wrap;}
+.submitbtn{background:var(--blue);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-weight:600;cursor:pointer;font-size:0.95rem;}
+.submitbtn:disabled{background:#B9C6D3;cursor:not-allowed;}
+.nextbtn{background:var(--navy);color:#fff;border:none;padding:11px 22px;border-radius:8px;font-weight:600;cursor:pointer;font-size:0.95rem;}
+
+.hidden{display:none !important;}
+
+/* score screen */
+#scoreScreen .bigscore{font-size:2.6rem;font-weight:800;color:var(--navy);text-align:center;margin:6px 0;}
+#scoreScreen .scorelabel{text-align:center;color:var(--muted);margin-bottom:16px;}
+.breakdownRow{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:0.88rem;}
+.breakdownRow .frac{font-weight:700;}
+.review-item{border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:10px;font-size:0.85rem;}
+.review-item.miss{border-left:4px solid var(--red);}
+.review-item.hit{border-left:4px solid var(--green);}
+footer{text-align:center;color:var(--muted);font-size:0.75rem;padding:20px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>GI / Hepatobiliary Mock NCLEX Exam</h1>
+  <p>Iggy 11e, Ch. 45–52 · Moderate–Advanced · 50 items (15 NGN)</p>
+</header>
+
+<div class="wrap">
+
+  <!-- SETUP SCREEN -->
+  <div id="setupScreen" class="panel">
+    <h3 style="margin-top:0;color:var(--navy);">Build your exam</h3>
+    <p style="color:var(--muted);font-size:0.9rem;">Select category filters (or leave all selected for the full 50-item exam). NGN items are marked and mixed throughout.</p>
+    <div class="catgrid" id="catGrid"></div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <button class="startbtn" id="startBtn">Start Exam</button>
+      <button class="smallbtn" id="selectAllBtn">Select all</button>
+      <button class="smallbtn" id="selectNoneBtn">Clear</button>
+      <span id="countLabel" style="color:var(--muted);font-size:0.85rem;margin-left:auto;"></span>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quizScreen" class="hidden">
+    <div class="progressBar"><div class="progressFill" id="progressFill" style="width:0%"></div></div>
+    <div class="progressText"><span id="progressLabel">Question 1 of 50</span><span id="runningScore">Score: 0/0</span></div>
+
+    <div class="panel" id="questionPanel"></div>
+
+    <div class="actions">
+      <button class="smallbtn" id="quitBtn">← Exit to setup</button>
+      <div style="display:flex;gap:10px;">
+        <button class="submitbtn" id="submitBtn">Submit Answer</button>
+        <button class="nextbtn hidden" id="nextBtn">Next Question →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORE SCREEN -->
+  <div id="scoreScreen" class="hidden panel">
+    <h3 style="color:var(--navy);margin-top:0;">Exam Complete</h3>
+    <div class="bigscore" id="finalPct">--%</div>
+    <div class="scorelabel" id="finalFrac">-- / -- correct</div>
+    <h4 style="color:var(--navy);border-top:1px solid var(--border);padding-top:12px;">By category</h4>
+    <div id="breakdownBox"></div>
+    <h4 style="color:var(--navy);margin-top:18px;">Review</h4>
+    <div id="reviewBox"></div>
+    <div style="margin-top:16px;">
+      <button class="startbtn" id="restartBtn">Build another exam</button>
+    </div>
+  </div>
+
+</div>
+<footer>Study tool built from Ignatavicius Med-Surg 11e, Chapters 45–52. Verify against Elsevier rationales for discrepancies.</footer>
+
+<script>
+/* =========================================================
+   QUESTION BANK
+   type: 'mc' | 'sata' | 'bowtie' | 'matrix' | 'cloze'
+   category: 'upper' | 'lower' | 'liver' | 'biliary' | 'nutrition' | 'perioperative'
+   ========================================================= */
+const CATS = {
+  upper: "Upper GI (esophagus, stomach, PUD)",
+  lower: "Lower GI / Bowel",
+  liver: "Liver & Hepatic",
+  biliary: "Biliary & Pancreatic",
+  nutrition: "Nutrition Support & Metabolic",
+  perioperative: "Abdominal Surgery / Perioperative"
+};
+
+const Q = [];
+
+/* ---------- UPPER GI ---------- */
+
+Q.push({cat:'upper', type:'mc', topic:'GERD',
+ stem:"A client with GERD reports nighttime heartburn that disrupts sleep despite taking a PPI every morning. Which nurse response reflects the best next assessment?",
+ options:[
+  "\u201cAre you lying down within 2-3 hours of eating dinner?\u201d",
+  "\u201cHow much weight have you gained in the last year?\u201d",
+  "\u201cDo you take your PPI with food or on an empty stomach?\u201d",
+  "\u201cHave you tried sleeping on your right side?\u201d"
+ ], correct:0,
+ rationale:[
+  "Correct. Recumbency within 2-3 hours of eating is one of the most common, modifiable triggers of nocturnal reflux and should be assessed before assuming the medication has failed.",
+  "Weight is relevant to GERD overall but doesn't explain why symptoms are specifically nocturnal despite being on therapy.",
+  "PPIs should be taken on an empty stomach 30-60 minutes before the first meal for maximal acid suppression, but the stem doesn't suggest a dosing problem \u2014 assessing behavior triggers comes first.",
+  "The left lateral position, not right, reduces reflux because it keeps the gastroesophageal junction above the level of gastric acid."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'Hiatal hernia',
+ stem:"A client is 2 days post-op laparoscopic Nissen fundoplication for a paraesophageal hiatal hernia. Which finding requires immediate provider notification?",
+ options:[
+  "Difficulty swallowing solid food, tolerating liquids well",
+  "Report of gas-bloat and inability to belch",
+  "Sudden onset of chest pain, tachycardia, and dyspnea",
+  "Mild left shoulder discomfort"
+ ], correct:2,
+ rationale:[
+  "Transient dysphagia to solids is an expected finding after fundoplication due to surgical edema at the wrap site; it typically resolves over weeks.",
+  "Gas-bloat syndrome (inability to belch/vomit) is a known, expected side effect of the wrap tightening the LES and is managed conservatively.",
+  "Correct. Sudden chest pain with tachycardia and dyspnea in the immediate post-op period is concerning for esophageal perforation or a slipped/herniated wrap \u2014 both are surgical emergencies requiring immediate notification.",
+  "Shoulder discomfort from diaphragmatic irritation or retained CO2 from laparoscopy is expected and self-limiting."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'PPI vs H2 blockers vs sucralfate mechanism',
+ stem:"Which teaching point is correct regarding sucralfate (Carafate)?",
+ options:[
+  "Take it with meals to enhance absorption.",
+  "Take it 1 hour before meals and at bedtime, on an empty stomach.",
+  "It works by permanently neutralizing existing stomach acid.",
+  "It should be taken at the same time as antacids for a synergistic effect."
+ ], correct:1,
+ rationale:[
+  "Food in the stomach interferes with sucralfate's ability to bind to the ulcer bed.",
+  "Correct. Sucralfate requires an acidic environment to form its protective paste over the ulcer crater, so it's given on an empty stomach, 1 hour before meals and at bedtime.",
+  "Sucralfate doesn't neutralize acid at all \u2014 it forms a physical, adherent barrier over the ulcer site that protects it from acid and pepsin.",
+  "Antacids raise gastric pH, which prevents sucralfate from forming its protective paste; the two should be separated by at least 30 minutes."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'EGD',
+ stem:"A client returns to the unit after an EGD with moderate sedation. Which nursing action is the priority before offering oral intake?",
+ options:[
+  "Confirm return of the gag reflex",
+  "Assess bowel sounds in all four quadrants",
+  "Check for abdominal distention",
+  "Verify the client voided"
+ ], correct:0,
+ rationale:[
+  "Correct. The throat is anesthetized with a topical spray before EGD, and moderate sedation further blunts protective reflexes. Confirming the gag reflex has returned (usually 30-60 minutes) is essential to prevent aspiration before allowing oral intake.",
+  "Bowel sounds aren't affected by an upper endoscopy and aren't the priority safety check for oral intake.",
+  "Distention isn't an expected finding after EGD and isn't the priority determinant for resuming intake.",
+  "Voiding isn't relevant to this procedure's aspiration risk."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'Oral cancer',
+ stem:"During a health fair, which client statement is most concerning for early oral cancer and warrants referral?",
+ options:[
+  "\u201cI have a canker sore that's been there about 4 days.\u201d",
+  "\u201cI have a white patch on the side of my tongue that hasn't gone away in 3 weeks.\u201d",
+  "\u201cMy gums bleed a little when I floss.\u201d",
+  "\u201cI bit my cheek and it's tender for a couple of days.\u201d"
+ ], correct:1,
+ rationale:[
+  "Aphthous ulcers (canker sores) are common and typically self-resolve within 1-2 weeks; a few days' duration isn't concerning.",
+  "Correct. Leukoplakia \u2014 a persistent white patch that doesn't wipe away \u2014 lasting more than 2 weeks is a classic early warning sign of oral cancer, especially in tobacco/alcohol users, and requires biopsy referral.",
+  "Mild gingival bleeding with flossing is common and usually reflects gingivitis, not malignancy.",
+  "A traumatic bite injury causing brief tenderness is expected and self-limiting."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'Stomatitis',
+ stem:"A client receiving chemotherapy develops white, curd-like patches on the buccal mucosa that bleed slightly when scraped. Which is the priority nursing action?",
+ options:[
+  "Document as normal oral flora and reassess in 24 hours",
+  "Notify the provider to evaluate for candidiasis and initiate antifungal therapy",
+  "Increase the frequency of hydrogen peroxide mouth rinses",
+  "Encourage citrus juices to stimulate saliva production"
+ ], correct:1,
+ rationale:[
+  "White, adherent, bleeding-when-scraped patches are the classic description of oral candidiasis, not normal flora \u2014 this needs intervention, not just observation.",
+  "Correct. Immunosuppressed/neutropenic clients are at high risk for secondary (opportunistic) stomatitis from Candida albicans; this requires prompt recognition and antifungal treatment to prevent systemic spread.",
+  "Hydrogen peroxide is drying and irritating to already-compromised oral mucosa and is no longer recommended for routine oral care.",
+  "Citrus and acidic foods will worsen pain and irritation on inflamed/ulcerated oral mucosa."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'Peptic ulcer disease pain pattern',
+ stem:"Which description of abdominal pain most clearly distinguishes a duodenal ulcer from a gastric ulcer?",
+ options:[
+  "Pain occurring 30-60 minutes after eating, relieved by vomiting",
+  "Pain occurring 2-3 hours after meals or at night, relieved by eating",
+  "Pain that radiates to the right shoulder after fatty food",
+  "Pain that worsens with recumbency and improves when upright"
+ ], correct:1,
+ rationale:[
+  "This pattern \u2014 pain soon after eating, relieved by vomiting \u2014 is more typical of a gastric ulcer.",
+  "Correct. Duodenal ulcer pain classically occurs 2-3 hours after meals or during the night and is relieved by food or antacids, because food buffers acid that would otherwise irritate the duodenal mucosa.",
+  "Right shoulder pain after fatty food is a gallbladder (biliary colic) pattern, not peptic ulcer disease.",
+  "This pattern describes GERD, not PUD."
+ ]});
+
+Q.push({cat:'upper', type:'mc', topic:'H. pylori triple therapy',
+ stem:"A client is prescribed a 14-day regimen of amoxicillin, clarithromycin, and a PPI for H. pylori-associated peptic ulcer disease. Which statement indicates the client understands the teaching?",
+ options:[
+  "\u201cI can stop the antibiotics early once my stomach pain goes away.\u201d",
+  "\u201cI need to complete the full course of all three medications even if I feel better.\u201d",
+  "\u201cThis combination will cure my ulcer immediately after the first dose.\u201d",
+  "\u201cI should take these medications only when I have symptoms.\u201d"
+ ], correct:1,
+ rationale:[
+  "Symptom relief occurs before the bacteria are eradicated; stopping early risks treatment failure and antibiotic resistance.",
+  "Correct. Full-course completion of combination antibiotic therapy is essential to eradicate H. pylori and prevent resistant organisms, even after symptoms improve.",
+  "Symptomatic improvement takes days, and bacterial eradication takes the full course \u2014 confirmed later by retesting (e.g., urea breath test).",
+  "This is a scheduled, fixed-course regimen, not an as-needed one."
+ ]});
+
+/* ---------- LOWER GI ---------- */
+
+Q.push({cat:'lower', type:'mc', topic:'Diverticulitis acute exacerbation',
+ stem:"A client with acute diverticulitis develops a rigid, board-like abdomen, temperature of 103.1\u00b0F (39.5\u00b0C), and HR 128. Which action is priority?",
+ options:[
+  "Administer the scheduled oral antibiotic",
+  "Notify the health care provider immediately",
+  "Apply a heating pad to the left lower quadrant",
+  "Encourage the client to ambulate to promote peristalsis"
+ ], correct:1,
+ rationale:[
+  "Oral intake should be stopped, not continued, if perforation/peritonitis is suspected \u2014 and this isn't the priority action regardless.",
+  "Correct. A rigid, board-like abdomen with fever and tachycardia signals probable perforation and peritonitis \u2014 a surgical emergency requiring immediate provider notification.",
+  "Heat can increase inflammation and is contraindicated with suspected perforation.",
+  "Ambulation does not address a life-threatening complication and could worsen a perforation."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Colonoscopy bowel prep safety',
+ stem:"An older adult is completing a polyethylene glycol (PEG) bowel prep at home the night before a colonoscopy. Which finding should the client be instructed to report immediately?",
+ options:[
+  "Frequent watery stools throughout the evening",
+  "Mild abdominal cramping during the prep",
+  "New onset of muscle weakness and irregular heartbeat",
+  "Feeling hungry since the prep requires a clear liquid diet"
+ ], correct:2,
+ rationale:[
+  "Frequent watery stools are the expected, intended effect of the prep.",
+  "Mild cramping is a common, expected side effect as the bowel is being purged.",
+  "Correct. Large-volume bowel preps, especially in older adults, can cause significant fluid and electrolyte shifts (notably hypokalemia), which can precipitate dysrhythmias \u2014 muscle weakness and irregular heartbeat need immediate evaluation.",
+  "Hunger is expected on a clear liquid prep diet and isn't a safety concern."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Colorectal cancer screening',
+ stem:"A 52-year-old client with no family history or symptoms asks about colorectal cancer screening. Per current guidelines, which response is accurate?",
+ options:[
+  "\u201cYou should have started screening at age 65.\u201d",
+  "\u201cScreening colonoscopy is recommended starting at average risk, and you're already due.\u201d",
+  "\u201cYou only need screening if you develop rectal bleeding.\u201d",
+  "\u201cA yearly digital rectal exam alone is sufficient screening.\u201d"
+ ], correct:1,
+ rationale:[
+  "Average-risk screening now begins earlier than age 65 \u2014 current guidelines recommend starting at age 45.",
+  "Correct. Average-risk colorectal cancer screening (colonoscopy every 10 years, or other modalities at shorter intervals) begins at age 45; a 52-year-old is already due if not previously screened.",
+  "Screening is meant to detect disease before symptoms like bleeding develop \u2014 waiting for symptoms defeats the purpose of screening.",
+  "A digital rectal exam alone only evaluates the lowest few centimeters of the rectum and is not an adequate stand-alone colorectal cancer screening tool."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Ileostomy stoma assessment',
+ stem:"Which stoma assessment finding in a client with a new ileostomy requires immediate intervention?",
+ options:[
+  "Stoma is beefy red and moist",
+  "Stoma is dusky/purple in color",
+  "Continuous liquid, greenish-brown output",
+  "Mild edema of the stoma in the first 48 hours"
+ ], correct:1,
+ rationale:[
+  "A beefy red, moist stoma indicates healthy tissue with adequate perfusion \u2014 this is the expected, normal finding.",
+  "Correct. A dusky or purple/blue stoma indicates ischemia or necrosis from compromised blood supply and requires immediate provider notification \u2014 this is a surgical emergency.",
+  "Continuous liquid output is expected and normal for an ileostomy since stool hasn't passed through the water-absorbing colon.",
+  "Mild postoperative edema in the first 1-2 days is expected as tissue heals from surgical trauma."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Colostomy irrigation/diet teaching',
+ stem:"A client with a new sigmoid colostomy asks about returning to a regular diet. Which teaching is correct?",
+ options:[
+  "\u201cAvoid all fiber permanently to prevent blockage.\u201d",
+  "\u201cIntroduce new foods one at a time and note any that cause gas, odor, or diarrhea.\u201d",
+  "\u201cYou must follow a low-residue diet for life.\u201d",
+  "\u201cCarbonated beverages are encouraged to help move stool through the stoma.\u201d"
+ ], correct:1,
+ rationale:[
+  "Long-term fiber avoidance isn't necessary once the colostomy is established and healing; a systematic reintroduction approach is preferred.",
+  "Correct. Introducing new foods one at a time allows the client to identify individual triggers for gas, odor, or loose stool without unnecessarily restricting the whole diet.",
+  "A low-residue diet is typically temporary in the immediate postoperative period, not a permanent restriction, once healing occurs and bowel function stabilizes.",
+  "Carbonated beverages increase gas and can cause uncomfortable stoma ballooning \u2014 they aren't recommended."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Appendicitis',
+ stem:"A client with suspected appendicitis reports sudden, complete relief of abdominal pain after several hours of steady right lower quadrant pain. Which is the nurse's priority interpretation?",
+ options:[
+  "The inflammation has resolved and discharge can be considered",
+  "This may indicate perforation, and the client requires immediate reassessment",
+  "The client's pain tolerance has simply increased",
+  "This is an expected part of the disease trajectory requiring no action"
+ ], correct:1,
+ rationale:[
+  "Spontaneous full resolution of appendicitis pain is not typical of the inflammatory process resolving on its own.",
+  "Correct. Sudden, complete relief of pain in suspected appendicitis is a classic warning sign of perforation \u2014 the pressure inside the inflamed appendix is released, but this is followed by worsening peritonitis. This requires urgent reassessment for rebound tenderness, rigidity, and fever.",
+  "This explanation ignores a well-documented, potentially dangerous clinical pattern.",
+  "This pain pattern is a red flag, not a benign or expected finding."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Celiac disease diet teaching',
+ stem:"A client newly diagnosed with celiac disease selects a lunch of grilled chicken, a corn tortilla, and a rice-based salad. Which additional teaching point is most important?",
+ options:[
+  "\u201cThis meal is appropriate; continue avoiding wheat, barley, and rye.\u201d",
+  "\u201cYou'll also need to avoid corn and rice long-term.\u201d",
+  "\u201cA gluten-free diet is only necessary during symptomatic flares.\u201d",
+  "\u201cYou can resume a regular diet once symptoms improve.\u201d"
+ ], correct:0,
+ rationale:[
+  "Correct. This meal correctly avoids gluten-containing grains (wheat, barley, rye) while using naturally gluten-free grains (corn, rice). Reinforcing the specific grains to avoid \u2014 and validating this appropriate choice \u2014 supports long-term adherence.",
+  "Corn and rice are naturally gluten-free and are appropriate staples for a celiac diet.",
+  "Celiac disease requires strict, lifelong gluten avoidance regardless of symptoms, because ongoing gluten exposure causes continued small intestine villous damage even without symptoms.",
+  "Gluten must be avoided for life; celiac disease doesn't resolve, and reintroducing gluten will cause recurrent mucosal damage."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Gastroenteritis priority lab',
+ stem:"A client with 3 days of profuse watery diarrhea has the following results: Na+ 138 mEq/L (135-145), K+ 3.0 mEq/L (3.5-5.0), Cl- 98 mEq/L (98-106). Which is the priority nursing concern?",
+ options:[
+  "Sodium level requires immediate correction",
+  "Chloride level is critically low and life-threatening",
+  "Hypokalemia places the client at risk for cardiac dysrhythmias",
+  "All values are within normal limits and require no action"
+ ], correct:2,
+ rationale:[
+  "Sodium is within normal limits (135-145 mEq/L) and does not require correction.",
+  "Chloride is within normal limits (98-106 mEq/L).",
+  "Correct. A potassium of 3.0 mEq/L is below the normal range of 3.5-5.0 mEq/L. Diarrhea causes significant potassium loss, and hypokalemia is dangerous because it predisposes to life-threatening dysrhythmias \u2014 this requires prompt intervention and cardiac monitoring.",
+  "Potassium is abnormal and requires action; this isn't a benign lab set."
+ ]});
+
+Q.push({cat:'lower', type:'mc', topic:'Paralytic ileus',
+ stem:"A client is 3 days post-op abdominal surgery with absent bowel sounds, abdominal distention, and no flatus or stool. Which intervention should the nurse anticipate?",
+ options:[
+  "Administer a stimulant laxative",
+  "Encourage a regular diet to stimulate peristalsis",
+  "Insert/maintain a nasogastric tube for bowel decompression",
+  "Restrict all IV fluids until bowel sounds return"
+ ], correct:2,
+ rationale:[
+  "Laxatives are ineffective and potentially harmful in a paralytic (adynamic) ileus because the problem is absent peristalsis, not a mechanical blockage that a laxative could push through.",
+  "Oral intake, including a regular diet, would worsen distention and risk vomiting/aspiration when peristalsis is absent.",
+  "Correct. An NG tube decompresses the stomach and upper GI tract, relieving distention and pressure while awaiting return of peristalsis; the client remains NPO.",
+  "IV fluids are needed, not restricted, to maintain hydration and electrolyte balance while the client is NPO."
+ ]});
+
+/* ---------- LIVER ---------- */
+
+Q.push({cat:'liver', type:'mc', topic:'Cirrhosis pathophysiology chain',
+ stem:"A nursing student is asked to explain the sequence that leads from cirrhosis to esophageal varices. Which sequence is correct?",
+ options:[
+  "Cirrhosis \u2192 hepatic scarring \u2192 portal hypertension \u2192 collateral venous congestion (including esophageal varices)",
+  "Cirrhosis \u2192 decreased ammonia \u2192 hepatic encephalopathy \u2192 esophageal varices",
+  "Esophageal varices \u2192 portal hypertension \u2192 cirrhosis",
+  "Cirrhosis \u2192 hypoalbuminemia \u2192 esophageal varices directly, bypassing portal pressure changes"
+ ], correct:0,
+ rationale:[
+  "Correct. Fibrotic scarring distorts hepatic architecture and obstructs normal blood flow through the liver, raising pressure in the portal venous system (portal hypertension). Blood is rerouted through collateral vessels \u2014 including fragile submucosal esophageal veins \u2014 which become distended and tortuous (varices), and are prone to rupture.",
+  "Ammonia is increased, not decreased, in liver failure, and this isn't the pathway to varices.",
+  "This reverses cause and effect \u2014 portal hypertension from cirrhosis causes varices, not the other way around.",
+  "Hypoalbuminemia contributes to ascites via decreased oncotic pressure, but the direct mechanical driver of esophageal varices is elevated portal venous pressure, not albumin level."
+ ]});
+
+Q.push({cat:'liver', type:'mc', topic:'Cirrhosis lab interpretation',
+ stem:"A client with cirrhosis has: albumin 2.4 g/dL (3.5-5.0), PT 18 seconds (11-12.5), INR 1.8 (0.8-1.1), platelets 90,000/mm\u00b3 (150,000-400,000). Which nursing priority follows from this data?",
+ options:[
+  "Initiate bleeding precautions and monitor for hemorrhage",
+  "Restrict protein intake to less than 20 g/day indefinitely",
+  "Anticipate the need for a high-sodium diet",
+  "Expect these values to normalize without intervention within 24 hours"
+ ], correct:0,
+ rationale:[
+  "Correct. A damaged liver cannot synthesize clotting factors or albumin adequately; the prolonged PT/elevated INR reflect impaired coagulation, and thrombocytopenia (often from splenic sequestration due to portal hypertension) compounds bleeding risk. Bleeding precautions (soft toothbrush, electric razor, avoiding IM injections, gentle handling) are priority.",
+  "Severe, prolonged protein restriction isn't current standard practice \u2014 moderate protein is needed for healing; restriction is reserved for active encephalopathy, and even then it's moderate, not severely limited long-term.",
+  "Sodium is restricted, not increased, in cirrhosis to reduce ascites and edema from secondary hyperaldosteronism.",
+  "These abnormalities reflect chronic hepatic synthetic dysfunction and will not spontaneously normalize without addressing the underlying liver disease."
+ ]});
+
+Q.push({cat:'liver', type:'mc', topic:'Liver biopsy post-procedure care',
+ stem:"Immediately following a percutaneous liver biopsy, which nursing action is correct?",
+ options:[
+  "Position the client on the left side for 2 hours",
+  "Position the client on the right side, applying pressure to the site",
+  "Encourage ambulation right away to prevent stiffness",
+  "Keep the client prone for the first hour"
+ ], correct:1,
+ rationale:[
+  "Left side-lying would not tamponade the biopsy site and risks ongoing bleeding.",
+  "Correct. The client is positioned on the right side with a pillow/rolled towel under the puncture site to apply direct pressure against the liver capsule, tamponading the site and reducing bleeding risk, typically for at least 2 hours.",
+  "The client should remain on bedrest (commonly 4-6 hours per protocol), not ambulate immediately, to minimize bleeding risk.",
+  "Prone positioning isn't the standard post-biopsy position; right side-lying with local pressure is."
+ ]});
+
+Q.push({cat:'liver', type:'mc', topic:'Paracentesis pre-procedure prep',
+ stem:"A client with ascites is scheduled for a paracentesis. Which nursing action should occur immediately before the procedure?",
+ options:[
+  "Instruct the client to void or insert a catheter to empty the bladder",
+  "Place the client NPO for 8 hours prior",
+  "Administer a cleansing enema",
+  "Sedate the client to a deep level of consciousness"
+ ], correct:0,
+ rationale:[
+  "Correct. An empty bladder reduces the risk of inadvertent bladder puncture during needle/catheter insertion into the peritoneal cavity.",
+  "Paracentesis doesn't require the client to be NPO since it isn't performed under general anesthesia.",
+  "A cleansing enema isn't part of standard paracentesis preparation.",
+  "Paracentesis is typically done with local anesthesia at the bedside; deep sedation isn't required or standard."
+ ]});
+
+Q.push({cat:'liver', type:'mc', topic:'Hepatitis B markers',
+ stem:"A client's labs show a positive HBsAg. Which interpretation is correct?",
+ options:[
+  "The client has developed lifelong immunity to hepatitis B",
+  "The client is currently infectious and can transmit hepatitis B",
+  "This confirms the client has received the hepatitis B vaccine",
+  "This result indicates resolved, past infection only"
+ ], correct:1,
+ rationale:[
+  "Immunity is indicated by anti-HBs (surface antibody), not HBsAg.",
+  "Correct. HBsAg (hepatitis B surface antigen) is a marker of active infection \u2014 whether acute or chronic \u2014 and its presence means the virus is currently replicating and the client is infectious.",
+  "Vaccination produces anti-HBs (protective antibody), not HBsAg; HBsAg positivity indicates actual infection, not immunization.",
+  "A resolved infection would show anti-HBs and anti-HBc without HBsAg; HBsAg positivity means the virus is still present."
+ ]});
+
+Q.push({cat:'liver', type:'mc', topic:'Hepatitis A post-exposure prophylaxis',
+ stem:"A nurse is exposed to a client later diagnosed with hepatitis A via a shared meal 10 days ago. What is the most important next step?",
+ options:[
+  "No action is needed since more than a week has passed",
+  "Obtain hepatitis A immunoglobulin or vaccine as soon as possible, since the window is within 14 days",
+  "Wait for symptoms to appear before seeking treatment",
+  "Begin a course of oral antiviral medication"
+ ], correct:1,
+ rationale:[
+  "Ten days is still within the effective post-exposure prophylaxis window, so action is still indicated and beneficial.",
+  "Correct. Hepatitis A post-exposure prophylaxis (immunoglobulin and/or vaccine) is effective if given within 14 days of exposure and significantly reduces the risk of developing infection.",
+  "Waiting for symptoms defeats the purpose of prophylaxis, which is meant to prevent infection before it manifests.",
+  "There is no specific antiviral treatment for hepatitis A; prevention is via immunoglobulin/vaccine, and management of active infection is supportive."
+ ]});
+
+Q.push({cat:'liver', type:'mc', topic:'Liver transplant rejection',
+ stem:"A client 2 weeks post-liver transplant develops fever, right upper quadrant pain, and rising bilirubin and liver enzymes. Which is the priority concern?",
+ options:[
+  "Normal expected postoperative recovery pattern",
+  "Acute organ rejection and the need for prompt evaluation",
+  "A dietary indiscretion causing transient enzyme elevation",
+  "Expected effect of immunosuppressant therapy requiring no action"
+ ], correct:1,
+ rationale:[
+  "This symptom cluster is not part of an expected, uncomplicated recovery.",
+  "Correct. Fever, RUQ pain, and rising bilirubin/liver enzymes in the early post-transplant period are classic signs of acute rejection and require immediate provider notification and evaluation (often with liver biopsy) to guide adjustment of immunosuppressive therapy.",
+  "Diet doesn't cause this clinical/lab pattern; this reflects an intrahepatic process, not a dietary issue.",
+  "Immunosuppressants suppress the immune response \u2014 they don't cause this constellation of findings, and this pattern always warrants evaluation, not reassurance."
+ ]});
+
+/* ---------- BILIARY / PANCREATIC ---------- */
+
+Q.push({cat:'biliary', type:'mc', topic:'Cholecystectomy T-tube care',
+ stem:"A client who had an open cholecystectomy with T-tube placement has 80 mL of green-brown drainage in the collection bag over the past 8 hours. Which is the correct nursing interpretation?",
+ options:[
+  "This is an abnormal finding requiring the T-tube to be clamped immediately",
+  "This is an expected finding consistent with normal bile drainage",
+  "This indicates the T-tube has become dislodged",
+  "This indicates active bleeding requiring transfusion"
+ ], correct:1,
+ rationale:[
+  "Clamping isn't indicated for expected bile output; clamping trials are done later, per provider order, to assess bile flow into the duodenum before removal.",
+  "Correct. Green-brown drainage is bile, and this volume is within the expected range (typically up to a few hundred mL/day, higher in the first day or two) as the T-tube diverts bile while the common bile duct heals.",
+  "Dislodgement would present as absent drainage from the tube and possibly bile leaking around the insertion site, not steady expected-color output.",
+  "Bile drainage is greenish-brown, not sanguineous; this description doesn't indicate bleeding."
+ ]});
+
+Q.push({cat:'biliary', type:'mc', topic:'HIDA scan',
+ stem:"A client is scheduled for a HIDA (hepatobiliary iminodiacetic acid) scan to evaluate for cholecystitis. Which pre-procedure instruction is correct?",
+ options:[
+  "Eat a high-fat meal immediately before the scan",
+  "Remain NPO for 4 hours before the scan as ordered",
+  "No preparation is required; the client may eat normally right up to the test",
+  "Drink a large volume of barium contrast prior to the scan"
+ ], correct:1,
+ rationale:[
+  "A high-fat meal right before the scan would cause the gallbladder to contract and empty, interfering with accurate imaging.",
+  "Correct. Fasting (commonly around 4 hours, per institutional protocol) is required so the gallbladder is not already contracted, allowing the radioactive tracer to fill it properly and demonstrate gallbladder function/obstruction.",
+  "Eating right before the test would affect gallbladder filling and compromise the study's accuracy.",
+  "Barium is used for GI tract imaging (e.g., UGI series), not for a HIDA scan, which uses an IV radioactive tracer."
+ ]});
+
+Q.push({cat:'biliary', type:'mc', topic:'Acute pancreatitis positioning/NG decompression',
+ stem:"A client with acute pancreatitis reports severe, boring epigastric pain radiating to the back. Which nursing intervention best addresses comfort and the underlying pathophysiology?",
+ options:[
+  "Position supine flat and encourage ambulation",
+  "Assist to a fetal position or sitting up and leaning forward, and maintain NPO status with NG decompression as ordered",
+  "Encourage a high-fat diet to stimulate enzyme release and \u201cflush\u201d the pancreas",
+  "Apply firm abdominal massage to reduce inflammation"
+ ], correct:1,
+ rationale:[
+  "Supine positioning worsens pancreatitis pain; ambulation isn't the priority when the client is in acute, severe pain and often has an ileus.",
+  "Correct. The fetal position or sitting forward reduces tension on the inflamed pancreas and eases pain. NPO status (often with NG decompression) rests the pancreas by stopping stimulation of enzyme secretion, which is central to acute management.",
+  "Any oral intake, especially fat, stimulates pancreatic enzyme secretion and worsens autodigestion/inflammation \u2014 this is contraindicated in the acute phase.",
+  "Abdominal massage isn't a therapeutic intervention for pancreatitis and could increase pain and risk in an inflamed, tender abdomen."
+ ]});
+
+Q.push({cat:'biliary', type:'mc', topic:'Pancreatic cancer painless jaundice',
+ stem:"A client presents with painless jaundice, clay-colored stools, and dark urine. Which underlying process best explains this presentation?",
+ options:[
+  "Acute viral hepatitis with hepatocellular inflammation",
+  "A tumor at the head of the pancreas obstructing the common bile duct",
+  "Acute cholecystitis with biliary colic",
+  "Peptic ulcer perforation"
+ ], correct:1,
+ rationale:[
+  "Viral hepatitis typically presents with malaise, anorexia, and right upper quadrant discomfort, not classically painless jaundice as the presenting sign.",
+  "Correct. A pancreatic head tumor can compress and obstruct the common bile duct as it passes through the pancreatic head, causing painless obstructive jaundice with clay-colored stools (lack of bilirubin reaching the gut) and dark urine (bilirubin excreted renally) \u2014 a hallmark presentation of pancreatic head cancer.",
+  "Cholecystitis classically presents with pain (biliary colic), not a painless picture.",
+  "Perforation presents with sudden severe pain and peritoneal signs, not painless jaundice."
+ ]});
+
+/* ---------- NUTRITION ---------- */
+
+Q.push({cat:'nutrition', type:'mc', topic:'TPN safety',
+ stem:"A client receiving TPN through a central line has a finger-stick glucose of 245 mg/dL (70-99 fasting normal). Which nursing action is most appropriate?",
+ options:[
+  "Discontinue the TPN infusion immediately",
+  "Notify the provider and anticipate sliding-scale insulin coverage",
+  "Slow the TPN rate on your own judgment to reduce glucose delivery",
+  "Recheck the glucose in 24 hours since this is expected with TPN"
+ ], correct:1,
+ rationale:[
+  "Abruptly stopping TPN risks rebound hypoglycemia due to the high dextrose concentration the body has adjusted to; it should be tapered, not stopped abruptly, and only per order.",
+  "Correct. TPN's high dextrose content commonly causes hyperglycemia; this requires provider notification, and sliding-scale or additive insulin is typically used to manage glucose while continuing the needed nutrition support.",
+  "The nurse should not independently alter the TPN rate; changes require a provider order because abrupt rate changes affect both glucose and fluid/electrolyte balance.",
+  "245 mg/dL is significantly elevated and needs timely intervention, not a 24-hour delay in follow-up."
+ ]});
+
+Q.push({cat:'nutrition', type:'mc', topic:'Enteral nutrition aspiration prevention',
+ stem:"Which nursing action is most important for reducing aspiration risk in a client receiving continuous enteral tube feeding?",
+ options:[
+  "Keep the head of bed elevated at least 30-45 degrees during and after feeding",
+  "Position the client supine to promote gastric emptying",
+  "Check gastric residual volumes only once per week",
+  "Bolus the entire daily volume once at bedtime"
+ ], correct:0,
+ rationale:[
+  "Correct. Elevating the head of the bed 30-45 degrees during feeding and for a period afterward reduces the risk of reflux and subsequent aspiration \u2014 this is one of the most important, evidence-based aspiration-prevention measures.",
+  "Supine positioning increases aspiration risk by allowing gastric contents to reflux more easily.",
+  "Residuals (per protocol) should be checked periodically, not just weekly, especially with continuous feeds and any signs of intolerance.",
+  "Bolusing the entire daily volume at once would overwhelm gastric capacity and dramatically increase reflux/aspiration risk; this describes continuous feeding, which should be delivered steadily via pump, not as a single bolus."
+ ]});
+
+Q.push({cat:'nutrition', type:'mc', topic:'Gastric bypass dumping syndrome',
+ stem:"A client 3 weeks post-gastric bypass reports diaphoresis, palpitations, and abdominal cramping 20 minutes after eating a bowl of cereal with milk. Which teaching addresses this?",
+ options:[
+  "Increase simple carbohydrate and sugar intake to boost energy",
+  "Eat small, frequent meals; avoid concentrated sweets and separate liquids from solid food",
+  "Drink fluids immediately with meals to aid digestion",
+  "Lie flat immediately after eating to slow gastric emptying"
+ ], correct:1,
+ rationale:[
+  "Increasing simple sugars would worsen dumping syndrome, since rapid entry of hyperosmolar sugar into the small intestine is exactly what triggers the fluid shift responsible for symptoms.",
+  "Correct. This describes early dumping syndrome \u2014 rapid emptying of hyperosmolar chyme into the small intestine draws fluid into the gut, causing GI and vasomotor symptoms. Management includes small frequent meals, avoiding concentrated sweets, and separating liquids from solids by 30-60 minutes to slow gastric emptying.",
+  "Drinking fluids with meals accelerates gastric emptying and worsens dumping syndrome; fluids should be separated from meals.",
+  "Lying down after eating (specifically in a semi-recumbent position) can help slow transit, but the core teaching is dietary modification, not this alone as the primary fix and 'immediately lying flat' is not standard specific advice."
+ ]});
+
+Q.push({cat:'nutrition', type:'mc', topic:'Obesity BMI classification',
+ stem:"A client is 5'6\u201d (167.6 cm) and weighs 205 lb (93 kg). Using BMI = weight(kg)/height(m)\u00b2, which classification is correct? (BMI categories: underweight <18.5, normal 18.5-24.9, overweight 25-29.9, obese \u226530)",
+ options:[
+  "Underweight",
+  "Normal weight",
+  "Overweight",
+  "Obese"
+ ], correct:3,
+ rationale:[
+  "Underweight is BMI under 18.5; this client's BMI is far higher.",
+  "Normal weight is 18.5-24.9; this client's calculated BMI (93 \u00f7 1.676\u00b2 \u2248 33.1) is well above this range.",
+  "Overweight is 25-29.9; the calculated BMI exceeds this range.",
+  "Correct. BMI = 93 kg \u00f7 (1.676 m)\u00b2 \u2248 33.1, which falls in the obese category (\u226530)."
+ ]});
+
+Q.push({cat:'nutrition', type:'mc', topic:'Malnutrition lab markers',
+ stem:"A client's nutrition labs show albumin 3.0 g/dL (3.5-5.0) and prealbumin 12 mg/dL (15-36). The provider wants to track the effectiveness of nutrition support over the next several days. Which lab is the better short-term indicator?",
+ options:[
+  "Albumin, because it reflects long-term protein status",
+  "Prealbumin, because its shorter half-life makes it more responsive to recent nutritional changes",
+  "Both are equally useful for short-term monitoring",
+  "Neither lab is useful for monitoring nutrition status"
+ ], correct:1,
+ rationale:[
+  "Albumin has a long half-life (about 18-20 days), so it reflects long-term nutritional status and changes slowly \u2014 it's not the best tool for tracking short-term response to an intervention.",
+  "Correct. Prealbumin has a much shorter half-life (about 2-3 days), making it more sensitive to recent changes in protein/nutritional status and a better marker for monitoring short-term response to nutrition support.",
+  "They serve different purposes based on their differing half-lives \u2014 they are not interchangeable for short-term tracking.",
+  "Both are useful nutrition markers; the question is which is more sensitive to short-term change, which is prealbumin."
+ ]});
+
+Q.push({cat:'nutrition', type:'mc', topic:'NG tube placement verification',
+ stem:"Prior to administering the first dose of medication via a newly placed NG tube, which method provides the most reliable confirmation of correct gastric placement?",
+ options:[
+  "Auscultating a whoosh of air over the epigastrium while injecting air",
+  "Radiographic (x-ray) confirmation",
+  "Observing the aspirate is clear in color",
+  "Asking the client if it feels correctly placed"
+ ], correct:1,
+ rationale:[
+  "The auscultatory \u201cwhoosh\u201d method is unreliable and can sound similar even if the tube is misplaced in the respiratory tract; it is no longer considered a dependable sole method.",
+  "Correct. X-ray confirmation is the gold standard for verifying initial NG/feeding tube placement before use, especially before administering feedings or medications.",
+  "Aspirate color/pH can support ongoing placement checks but is not as definitive as radiographic confirmation, especially for the initial placement check.",
+  "Subjective client sensation is not a reliable objective indicator of tube placement."
+ ]});
+
+/* ---------- PERIOPERATIVE ---------- */
+
+Q.push({cat:'perioperative', type:'mc', topic:'Abdominal assessment sequence',
+ stem:"A nurse is performing a focused abdominal assessment. What is the correct order of technique, and why?",
+ options:[
+  "Palpation, percussion, auscultation, inspection \u2014 to detect masses before other findings are influenced",
+  "Inspection, auscultation, percussion, palpation \u2014 because palpation and percussion can alter bowel motility and sounds",
+  "Auscultation, inspection, palpation, percussion \u2014 order doesn't affect outcomes",
+  "Percussion first, then inspection, then auscultation and palpation together"
+ ], correct:1,
+ rationale:[
+  "Doing palpation first would mechanically stimulate the bowel and could produce false bowel sounds when auscultation is done afterward.",
+  "Correct. Unlike other body systems, the abdomen is assessed with auscultation before palpation/percussion, because manipulating the abdomen can artificially increase bowel motility and alter the very bowel sounds the nurse is trying to assess accurately.",
+  "Order absolutely matters for the abdomen specifically, unlike some other assessments \u2014 auscultation must precede manipulation.",
+  "This order still places manipulation before auscultation and would distort the results."
+ ]});
+
+/* =========================================================
+   NGN ITEMS (15)
+   ========================================================= */
+
+/* NGN 1 — Bowtie: cirrhosis / variceal hemorrhage */
+Q.push({cat:'liver', type:'bowtie', topic:'Cirrhosis & esophageal variceal hemorrhage', ngn:true,
+ stem:"A client with a known history of alcoholic cirrhosis is admitted vomiting bright red blood. Vitals: BP 84/50, HR 128, RR 24. Labs: Hgb 7.8 g/dL (12-16 female / 14-18 male), platelets 88,000/mm\u00b3 (150,000-400,000), ammonia 95 mcg/dL (15-45).",
+ left:{title:"Condition Most Likely",
+   options:["Bleeding esophageal varices secondary to portal hypertension","Perforated peptic ulcer","Mallory-Weiss tear from vomiting only, unrelated to liver disease","Diverticular bleed"],
+   correct:0},
+ middle:{title:"Actions to Take (select 2)",
+   options:["Establish two large-bore IV lines and begin fluid/blood resuscitation","Prepare for possible endoscopic band ligation or sclerotherapy","Administer a stimulant laxative","Encourage oral intake of clear liquids","Apply a heating pad to the abdomen"],
+   correct:[0,1]},
+ right:{title:"Parameters to Monitor (select 2)",
+   options:["Vital signs and level of consciousness","Serum ammonia and mental status for encephalopathy","Serum uric acid","Peak flow meter readings","Deep tendon reflexes in lower extremities"],
+   correct:[0,1]},
+ rationale:"This client's history of cirrhosis, hematemesis, hypotension/tachycardia, low Hgb, thrombocytopenia (from portal hypertension \u2192 splenomegaly \u2192 splenic sequestration of platelets), and elevated ammonia together point to a bleeding esophageal varix. Priority actions address the airway/circulation emergency (large-bore IV access, resuscitation) and definitive hemorrhage control (endoscopic banding/sclerotherapy) \u2014 not oral intake or laxatives, which are irrelevant or harmful. Ongoing monitoring must track hemodynamic status and watch for hepatic encephalopathy, since blood in the GI tract is digested as protein and raises ammonia, worsening confusion."});
+
+/* NGN 2 — Matrix: Hepatitis A vs B vs C */
+Q.push({cat:'liver', type:'matrix', topic:'Hepatitis A vs B vs C', ngn:true,
+ stem:"For each characteristic, select the hepatitis type it best describes.",
+ columns:["Hepatitis A","Hepatitis B","Hepatitis C"],
+ rows:[
+  {statement:"Transmitted primarily via the fecal-oral route from contaminated food or water", correctCol:0,
+   rationale:"Hepatitis A spreads fecal-orally; good hand hygiene and safe food/water handling are the primary prevention strategies."},
+  {statement:"Post-exposure immunoglobulin is effective if given within 14 days of exposure", correctCol:0,
+   rationale:"This is a hallmark of hepatitis A post-exposure prophylaxis."},
+  {statement:"Leading cause of cirrhosis and liver cancer in the U.S., often via bloodborne exposure with no vaccine currently available", correctCol:2,
+   rationale:"Hepatitis C is bloodborne, frequently becomes chronic, and has no vaccine \u2014 it is the leading U.S. cause of cirrhosis/liver cancer from viral hepatitis."},
+  {statement:"HBsAg positivity indicates active infectiousness; vaccination protects against this type and also against hepatitis D", correctCol:1,
+   rationale:"Hepatitis B has a specific surface antigen marker of infectiousness, and its vaccine also confers protection against hepatitis D, since D requires B for replication."},
+  {statement:"Transmitted via blood and sexual contact; standard precautions plus safer sex practices and not sharing needles are key prevention", correctCol:1,
+   rationale:"Hepatitis B spreads via blood/body fluids and sexual contact; prevention centers on barrier protection, not sharing needles, and vaccination."}
+ ]});
+
+/* NGN 3 — Cloze: hepatic encephalopathy / lactulose */
+Q.push({cat:'liver', type:'cloze', topic:'Hepatic encephalopathy & lactulose', ngn:true,
+ stem:"A client with cirrhosis and hepatic encephalopathy is started on lactulose. Complete the statements below.",
+ template:"Lactulose works by trapping ammonia in the colon as {0}, which is then eliminated in the stool. The therapeutic goal is {1} soft stools per day. A finding suggesting the medication is working is {2}, while a finding requiring the dose to be reduced is {3}.",
+ blanks:[
+  {options:["ammonium (NH4+)","free ammonia gas (NH3)","urea","bilirubin"], correct:0},
+  {options:["1","2-3","6-8","10 or more"], correct:1},
+  {options:["improved orientation and decreased asterixis","worsening confusion","rising ammonia level","new-onset jaundice"], correct:0},
+  {options:["one formed stool daily","persistent constipation","severe watery diarrhea with cramping","no change in stool pattern"], correct:2}
+ ],
+ rationale:"Lactulose is a nonabsorbable disaccharide that acidifies the colon, converting absorbable NH3 into non-absorbable NH4+ so it's excreted in stool rather than reabsorbed into circulation. The therapeutic endpoint is 2-3 soft stools/day; improved mentation and decreased asterixis confirm effectiveness (ammonia levels don't always correlate well with symptoms, so clinical status is followed too). Excessive diarrhea signals overdose and risks dehydration and hypokalemia, requiring a dose reduction."});
+
+/* NGN 4 — SATA/trend: acute pancreatitis labs */
+Q.push({cat:'biliary', type:'sata', topic:'Acute pancreatitis lab trend', ngn:true,
+ stem:"A client is admitted with acute pancreatitis. Labs on admission: amylase 480 U/L (30-220), lipase 620 U/L (0-160), calcium 7.6 mg/dL (9.0-10.5), glucose 210 mg/dL (70-99 fasting), WBC 16,200/mm\u00b3 (5,000-10,000). Select ALL findings that are consistent with this client's diagnosis and require ongoing monitoring.",
+ options:[
+  "Hypocalcemia related to fat necrosis binding calcium",
+  "Hyperglycemia from islet cell/insulin disruption",
+  "Leukocytosis reflecting the systemic inflammatory response",
+  "Elevated lipase, which remains elevated longer than amylase and is useful if presentation is delayed",
+  "Expectation that bowel sounds will be hyperactive due to pancreatic stimulation",
+  "Decreased risk of respiratory complications since the pancreas is unrelated to the lungs"
+ ],
+ correct:[0,1,2,3],
+ rationale:[
+  "Correct \u2014 fatty acids released during pancreatic fat necrosis bind calcium, producing hypocalcemia that can persist 7-10 days and requires monitoring for tetany/seizure risk.",
+  "Correct \u2014 pancreatic cell injury impairs insulin release and carbohydrate metabolism, producing hyperglycemia that needs monitoring and possible coverage.",
+  "Correct \u2014 the inflammatory/necrotic process drives an elevated WBC count that correlates with disease severity.",
+  "Correct \u2014 lipase rises later and stays elevated longer (5-7 days) than amylase, making it useful diagnostically days after symptom onset.",
+  "Incorrect \u2014 paralytic ileus with absent or decreased bowel sounds is expected in acute pancreatitis, not hyperactive sounds.",
+  "Incorrect \u2014 pancreatitis carries real respiratory risk (pleural effusion, atelectasis, ARDS) from the systemic inflammatory response and elevated diaphragm; respiratory status must be monitored closely, not assumed to be unaffected."
+ ]});
+
+/* NGN 5 — Bowtie: post-op abdominal wound complication */
+Q.push({cat:'perioperative', type:'bowtie', topic:'Post-op wound dehiscence/evisceration', ngn:true,
+ stem:"A client is 4 days post-op abdominal surgery and states, \u201cI felt something give way when I coughed.\u201d The nurse finds loops of bowel protruding through the incision, with the surrounding skin intact.",
+ left:{title:"Condition Most Likely",
+   options:["Wound evisceration","Normal incisional healing","Paralytic ileus","Superficial wound infection"],
+   correct:0},
+ middle:{title:"Actions to Take (select 2)",
+   options:["Cover the protruding bowel with a sterile saline-soaked dressing","Attempt to manually push the bowel back into the abdomen","Notify the surgeon immediately","Place the client in a high Fowler's position","Keep the client NPO and prepare for likely return to surgery"],
+   correct:[0,2]},
+ right:{title:"Parameters to Monitor (select 2)",
+   options:["Vital signs for signs of shock","Color and perfusion of the exposed bowel","Serum lipase","Deep tendon reflexes","Peak expiratory flow"],
+   correct:[0,1]},
+ rationale:"Protruding abdominal contents through a separated incision is evisceration \u2014 a surgical emergency. The bowel must never be manually replaced (this risks contamination and strangulation); instead it's protected with sterile saline-soaked gauze to prevent drying/necrosis while the surgeon is notified immediately for emergent repair. The client should also be kept NPO in anticipation of surgery. Position should be low Fowler's/supine with knees bent to reduce abdominal tension \u2014 not high Fowler's, which increases intra-abdominal pressure on the wound. Ongoing monitoring targets hemodynamic stability and the viability (color/perfusion) of the exposed bowel."});
+
+/* NGN 6 — Matrix: PPI vs H2 blocker vs Sucralfate */
+Q.push({cat:'upper', type:'matrix', topic:'PPI vs H2 blocker vs Sucralfate', ngn:true,
+ stem:"Match each statement to the correct medication class.",
+ columns:["Proton Pump Inhibitor","H2 Receptor Antagonist","Sucralfate"],
+ rows:[
+  {statement:"Best given on an empty stomach 30-60 minutes before the first meal of the day", correctCol:0,
+   rationale:"PPIs (e.g., omeprazole) are most effective when taken before meals so the drug is active when acid-producing proton pumps are stimulated by food."},
+  {statement:"Forms a protective, adherent paste over the ulcer crater rather than altering gastric pH", correctCol:2,
+   rationale:"Sucralfate's mechanism is a physical barrier, not acid suppression, and requires an acidic environment to activate \u2014 hence it's not given with antacids or with meals."},
+  {statement:"Blocks histamine-stimulated acid secretion and can be given at routine dosing times", correctCol:1,
+   rationale:"H2 blockers (e.g., famotidine) reduce acid via histamine receptor blockade and don't require the strict pre-meal timing that PPIs do."},
+  {statement:"Long-term use has been associated with increased risk of kidney disease, GI infections, and impaired nutrient absorption", correctCol:0,
+   rationale:"Long-term PPI use is linked in research to several adverse effects including kidney, liver, and cardiovascular risks and impaired nutrient absorption (e.g., B12, magnesium)."},
+  {statement:"Must be separated from other oral medications by at least 2 hours because it can interfere with their absorption", correctCol:2,
+   rationale:"Sucralfate's coating action can bind other drugs in the GI tract and reduce their absorption, so timing must be separated."}
+ ]});
+
+/* NGN 7 — SATA: ulcerative colitis acute exacerbation nursing actions */
+Q.push({cat:'lower', type:'sata', topic:'Ulcerative colitis acute exacerbation', ngn:true,
+ stem:"A client is admitted with an acute exacerbation of ulcerative colitis, having 18 bloody stools in the past 24 hours, temperature 101.8\u00b0F (38.8\u00b0C), and reports of fatigue. Select ALL appropriate nursing actions.",
+ options:[
+  "Maintain the client NPO or on a bowel-rest regimen as ordered",
+  "Monitor stool frequency, volume, and characteristics closely",
+  "Assess for signs of dehydration and electrolyte imbalance, especially potassium",
+  "Encourage a high-fiber diet to bulk the stool immediately",
+  "Administer prescribed anti-inflammatory or corticosteroid therapy",
+  "Provide skin care to the perianal area to prevent breakdown"
+ ],
+ correct:[0,1,2,4,5],
+ rationale:[
+  "Correct \u2014 resting the bowel is a priority intervention during an acute exacerbation to reduce mucosal irritation and stimulation.",
+  "Correct \u2014 quantifying output is essential to assess severity, fluid loss, and treatment response.",
+  "Correct \u2014 frequent bloody diarrhea causes significant fluid and potassium loss, risking dehydration and dysrhythmia-provoking hypokalemia.",
+  "Incorrect \u2014 a high-fiber diet would further stimulate an already inflamed, actively bleeding bowel; the bowel needs rest, not more residue, during an acute flare.",
+  "Correct \u2014 anti-inflammatory/corticosteroid therapy is central to reducing the acute inflammatory exacerbation.",
+  "Correct \u2014 frequent bloody stools place the perianal skin at high risk for breakdown and require proactive skin care."
+ ]});
+
+/* NGN 8 — Bowtie: perforated peptic ulcer */
+Q.push({cat:'upper', type:'bowtie', topic:'Perforated peptic ulcer', ngn:true,
+ stem:"A client with a known history of peptic ulcer disease develops sudden, severe, sharp epigastric pain that quickly becomes generalized, with a rigid, board-like abdomen and shallow breathing. Temp 100.9\u00b0F, HR 118, BP 92/58.",
+ left:{title:"Condition Most Likely",
+   options:["Perforated peptic ulcer with peritonitis","Uncomplicated gastritis flare","Gallbladder colic","Mesenteric ischemia unrelated to ulcer history"],
+   correct:0},
+ middle:{title:"Actions to Take (select 2)",
+   options:["Keep the client NPO and prepare for emergency surgery","Insert an NG tube for decompression as ordered","Administer a large meal to buffer stomach acid","Encourage ambulation to relieve gas","Notify the provider immediately"],
+   correct:[0,4]},
+ right:{title:"Parameters to Monitor (select 2)",
+   options:["Vital signs for worsening shock","Abdominal rigidity and rebound tenderness","Peak flow readings","Deep tendon reflexes","Serum uric acid"],
+   correct:[0,1]},
+ rationale:"Sudden, severe pain that becomes generalized with a rigid/board-like abdomen in a client with known PUD is the classic presentation of ulcer perforation with resulting chemical/bacterial peritonitis \u2014 a surgical emergency. The two highest-yield immediate actions are keeping the client NPO in preparation for emergency surgery and notifying the provider immediately; NG tube insertion is also appropriate but is typically done per provider order following notification, so the two most immediately essential actions here are NPO status and provider notification. Feeding or ambulation would worsen the situation. Ongoing monitoring focuses on hemodynamic status (evolving into septic/hypovolemic shock) and the physical exam findings (rigidity, rebound) that track peritoneal irritation."});
+
+/* NGN 9 — Matrix: Crohn's vs Ulcerative colitis */
+Q.push({cat:'lower', type:'matrix', topic:'Crohn disease vs Ulcerative colitis', ngn:true,
+ stem:"Match each characteristic to the disease it best describes.",
+ columns:["Crohn Disease","Ulcerative Colitis"],
+ rows:[
+  {statement:"Can affect any part of the GI tract from mouth to anus in a patchy, \u201cskip lesion\u201d pattern", correctCol:0,
+   rationale:"Crohn's involves transmural inflammation anywhere along the GI tract with characteristic skip lesions (healthy tissue between inflamed segments)."},
+  {statement:"Inflammation is continuous and limited to the colon and rectum, involving only the mucosal layer", correctCol:1,
+   rationale:"Ulcerative colitis produces continuous mucosal inflammation confined to the colon/rectum, unlike Crohn's patchy, full-thickness pattern."},
+  {statement:"Pain is often relieved by defecation; abdominal pain frequently localizes to the right lower quadrant (terminal ileum)", correctCol:0,
+   rationale:"The terminal ileum is the most common site of involvement in Crohn's, producing RLQ pain often relieved by a bowel movement."},
+  {statement:"Bloody diarrhea, 10-20 stools per day, is the most common presenting symptom", correctCol:1,
+   rationale:"Frequent bloody diarrhea is the hallmark of ulcerative colitis because the inflamed, ulcerated colonic mucosa cannot absorb water and bleeds easily."},
+  {statement:"Surgical removal of the diseased segment is not curative because disease can recur elsewhere in the GI tract", correctCol:0,
+   rationale:"Because Crohn's can affect any GI segment, resection doesn't cure the disease \u2014 unlike UC, where total colectomy removes all diseased tissue and is considered curative."}
+ ]});
+
+/* NGN 10 — SATA: TPN complications and monitoring */
+Q.push({cat:'nutrition', type:'sata', topic:'TPN complications & monitoring', ngn:true,
+ stem:"A client is receiving TPN via a central venous catheter. Select ALL nursing actions/assessments appropriate for safe TPN administration.",
+ options:[
+  "Monitor blood glucose per protocol due to the high dextrose concentration",
+  "Change the TPN administration tubing and filter per facility protocol (commonly every 24 hours)",
+  "Increase or decrease the infusion rate as needed based on the client's appetite",
+  "Monitor for signs of catheter-related bloodstream infection (fever, chills, redness at site)",
+  "Never interrupt the TPN infusion abruptly; taper per order if discontinuing",
+  "Use the same central line lumen for other IV medications and blood draws whenever convenient"
+ ],
+ correct:[0,1,3,4],
+ rationale:[
+  "Correct \u2014 TPN's high dextrose load requires regular glucose monitoring to detect and manage hyperglycemia.",
+  "Correct \u2014 routine tubing/filter changes reduce infection risk given TPN's high infection potential (dextrose is a good growth medium for organisms).",
+  "Incorrect \u2014 the rate is provider-ordered based on caloric/fluid needs, not adjusted based on appetite; abrupt rate changes risk hyper/hypoglycemia.",
+  "Correct \u2014 central line-associated bloodstream infection is a major TPN risk requiring vigilant assessment.",
+  "Correct \u2014 abrupt discontinuation risks rebound hypoglycemia because the body has adjusted insulin output to the high glucose load; tapering prevents this.",
+  "Incorrect \u2014 the TPN lumen should be dedicated to TPN only when possible to reduce infection risk and prevent incompatibilities with other infusions."
+ ]});
+
+/* NGN 11 — Cloze: enteral feeding types */
+Q.push({cat:'nutrition', type:'cloze', topic:'Enteral feeding types (bolus, cyclic, continuous)', ngn:true,
+ stem:"A client with a PEG tube is being converted from continuous to a schedule that better supports mobility and rehab participation. Complete the statements.",
+ template:"For a client at highest risk of aspiration, {0} feeding delivered by pump over 16-24 hours is safest. A client working toward discharge who wants more freedom to attend therapy sessions untethered would benefit most from {1} feeding, in which a larger volume infuses over a shorter period (often several hours) at scheduled times. A client who is otherwise stable and wants to mimic a normal mealtime pattern may be a candidate for {2} feeding, given over 15-30 minutes several times a day, but this method carries the {3} risk of aspiration among the three approaches because of the volume delivered quickly.",
+ blanks:[
+  {options:["continuous","cyclic","bolus","trickle"], correct:0},
+  {options:["continuous","cyclic","bolus","trickle"], correct:1},
+  {options:["continuous","cyclic","bolus","trickle"], correct:2},
+  {options:["lowest","highest","identical","unpredictable"], correct:1}
+ ],
+ rationale:"Continuous feeding via pump delivers a steady, slow rate over most or all of the day and is preferred for clients with higher aspiration risk or poor tolerance of larger volumes. Cyclic feeding delivers the full daily volume over a shorter block of time (e.g., overnight or over several daytime hours), freeing the client from the pump for part of the day \u2014 useful for rehab/mobility goals. Bolus feeding delivers a set volume relatively quickly, similar in timing to a meal, and carries the highest aspiration risk of the three because of the volume and rate delivered, so it's reserved for clients with intact gag reflex, normal gastric emptying, and lower aspiration risk."});
+
+/* NGN 12 — Bowtie: acute cholecystitis */
+Q.push({cat:'biliary', type:'bowtie', topic:'Acute cholecystitis', ngn:true,
+ stem:"A client reports sharp right upper quadrant pain radiating to the right shoulder blade after eating a fried, fatty meal, with nausea and low-grade fever. Murphy's sign is positive.",
+ left:{title:"Condition Most Likely",
+   options:["Acute cholecystitis","Acute pancreatitis","Peptic ulcer perforation","Appendicitis"],
+   correct:0},
+ middle:{title:"Actions to Take (select 2)",
+   options:["Keep the client NPO in anticipation of possible surgery","Anticipate an ordered HIDA scan or abdominal ultrasound","Encourage a high-fat meal to \u201ctest\u201d gallbladder function","Apply a heating pad directly to the RUQ for comfort","Administer prescribed antiemetic and analgesic medications"],
+   correct:[0,1]},
+ right:{title:"Parameters to Monitor (select 2)",
+   options:["Pain characteristics and Murphy's sign response","Temperature trend and WBC count for worsening infection","Serum uric acid","Peak expiratory flow","Deep tendon reflexes"],
+   correct:[0,1]},
+ rationale:"RUQ pain radiating to the right shoulder/scapula after a fatty meal, with a positive Murphy's sign (inspiratory arrest on palpation of the RUQ), is classic for acute cholecystitis \u2014 gallbladder inflammation, often from an obstructing gallstone. The client is kept NPO since fat intake stimulates gallbladder contraction and worsens pain, and diagnostic imaging (ultrasound first-line, HIDA scan if ultrasound is inconclusive) is anticipated. Monitoring tracks both the physical exam finding used to diagnose (Murphy's sign/pain) and signs of progression to infection/perforation (fever, rising WBC)."});
+
+/* NGN 13 — Matrix: diet progression */
+Q.push({cat:'nutrition', type:'matrix', topic:'Diet progression: clear liquid, full liquid, low-residue', ngn:true,
+ stem:"A client is progressing through diet stages after an acute diverticulitis flare and bowel rest. Match each diet description to its correct category.",
+ columns:["Clear Liquid","Full Liquid","Low-Residue"],
+ rows:[
+  {statement:"Broth, gelatin, black coffee, apple juice \u2014 leaves minimal residue and is easily absorbed", correctCol:0,
+   rationale:"Clear liquid diets include only transparent fluids that leave no residue in the GI tract, typically the first step after bowel rest."},
+  {statement:"Includes all clear liquids plus items such as milk, pudding, and strained cream soups", correctCol:1,
+   rationale:"Full liquid adds dairy-based and opaque liquids, providing more calories/protein than clear liquid while remaining easy to digest."},
+  {statement:"Refined breads, well-cooked vegetables without skins, and tender meats, limiting fiber content", correctCol:2,
+   rationale:"A low-residue (low-fiber) diet limits undigested material passing through the colon, appropriate as the client advances toward a regular diet after an inflammatory flare."},
+  {statement:"Typically the first diet ordered immediately after acute diverticulitis symptoms begin improving on bowel rest", correctCol:0,
+   rationale:"Clear liquids are usually the first oral intake reintroduced after NPO/bowel rest, before advancing further."}
+ ]});
+
+/* NGN 14 — SATA: gastric bypass complications */
+Q.push({cat:'nutrition', type:'sata', topic:'Gastric bypass post-op risks', ngn:true,
+ stem:"A client is 6 weeks post Roux-en-Y gastric bypass. Select ALL findings/teaching points the nurse should address to reduce complications.",
+ options:[
+  "Lifelong vitamin B12, iron, and calcium supplementation is typically required",
+  "Small, frequent meals with protein prioritized over carbohydrates",
+  "Rapid consumption of large meals is encouraged to meet caloric needs quickly",
+  "Signs of dumping syndrome (diaphoresis, palpitations, cramping after eating) should be reported and managed with dietary changes",
+  "Risk for malnutrition exists despite the client also being at risk for obesity-related conditions prior to surgery",
+  "Carbonated, high-sugar beverages are encouraged to help with hydration"
+ ],
+ correct:[0,1,3,4],
+ rationale:[
+  "Correct \u2014 the altered anatomy bypasses areas of the small intestine responsible for absorbing key nutrients (B12, iron, calcium, fat-soluble vitamins), requiring lifelong supplementation.",
+  "Correct \u2014 protein intake supports healing and prevents muscle wasting; small frequent meals accommodate the drastically reduced stomach pouch size.",
+  "Incorrect \u2014 rapid, large-volume intake overwhelms the small gastric pouch, causing pain, vomiting, and increasing dumping syndrome risk.",
+  "Correct \u2014 recognizing and managing dumping syndrome through dietary modification (small meals, avoiding concentrated sweets, separating liquids from solids) is essential teaching.",
+  "Correct \u2014 despite starting from obesity, the malabsorptive component of bypass surgery creates a real and sometimes underrecognized risk for protein-calorie and micronutrient malnutrition.",
+  "Incorrect \u2014 carbonated and high-sugar beverages should be avoided; carbonation causes gas/discomfort in the small pouch, and concentrated sugar triggers dumping syndrome."
+ ]});
+
+/* NGN 15 — Cloze: liver transplant rejection vs infection */
+Q.push({cat:'liver', type:'cloze', topic:'Liver transplant: rejection vs infection', ngn:true,
+ stem:"A client 3 weeks post-liver transplant on immunosuppressive therapy develops fever and malaise. Complete the statements to guide the nurse's clinical reasoning.",
+ template:"Findings that point more toward acute organ rejection include fever accompanied by {0}. Findings that point more toward infection (a major risk because of immunosuppression) include fever accompanied by {1}. Because immunosuppressive therapy blunts the normal inflammatory response, the nurse should recognize that classic infection signs may be {2}, making {3} an especially important ongoing assessment priority regardless of which process is occurring.",
+ blanks:[
+  {options:["right upper quadrant pain, jaundice, and rising liver enzymes/bilirubin","productive cough with purulent sputum","dysuria and cloudy urine","a new skin rash unrelated to the graft"], correct:0},
+  {options:["rising liver enzymes without a clear infectious source","a localized source such as the incision, lungs, or urinary tract with organism-specific findings","asterixis and confusion","clay-colored stools"], correct:1},
+  {options:["exaggerated and easy to identify","blunted or atypical, since the immune response that produces classic signs is suppressed","completely absent, so no monitoring is needed","unrelated to fever pattern"], correct:1},
+  {options:["frequent, vigilant assessment for even subtle changes in temperature, wound, and mental status","daily weight only","monthly liver biopsy","discontinuing all monitoring once discharged"], correct:0},
+ ],
+ rationale:"Acute rejection classically presents with fever plus graft-specific findings \u2014 RUQ pain, jaundice, and rising bilirubin/liver enzymes \u2014 reflecting the immune system attacking the new liver. Infection, a major risk from immunosuppression, more often localizes to a specific source (incision, lungs, urinary tract) with findings specific to that site. Critically, immunosuppressive drugs blunt the inflammatory response that normally produces textbook infection signs (e.g., robust fever, purulent drainage, marked leukocytosis), so infections can present atypically and subtly. This makes frequent, vigilant assessment for even small changes in temperature, wound appearance, and mental status essential, since the nurse can't rely on dramatic classic signs to catch a developing problem early."});
+
+/* =========================================================
+   APP ENGINE
+   ========================================================= */
+let activeSet = [];   // filtered/shuffled question objects for this run
+let curIdx = 0;
+let answered = false;
+let results = [];     // {q, correct:boolean}
+let state = {};        // per-question interaction state
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+/* ---------- SETUP SCREEN ---------- */
+const catGrid = document.getElementById('catGrid');
+const activeCats = new Set(Object.keys(CATS));
+function renderCatGrid(){
+  catGrid.innerHTML = '';
+  Object.keys(CATS).forEach(key=>{
+    const count = Q.filter(q=>q.cat===key).length;
+    const btn = document.createElement('div');
+    btn.className = 'catbtn' + (activeCats.has(key) ? ' active' : '');
+    btn.innerHTML = `<strong>${CATS[key]}</strong><br><span style="color:var(--muted);font-size:0.78rem;">${count} items</span>`;
+    btn.onclick = () => { activeCats.has(key) ? activeCats.delete(key) : activeCats.add(key); renderCatGrid(); };
+    catGrid.appendChild(btn);
+  });
+  const n = Q.filter(q=>activeCats.has(q.cat)).length;
+  document.getElementById('countLabel').textContent = `${n} question${n===1?'':'s'} selected`;
+}
+renderCatGrid();
+
+document.getElementById('selectAllBtn').onclick = () => { Object.keys(CATS).forEach(k=>activeCats.add(k)); renderCatGrid(); };
+document.getElementById('selectNoneBtn').onclick = () => { activeCats.clear(); renderCatGrid(); };
+
+document.getElementById('startBtn').onclick = () => {
+  const pool = Q.filter(q=>activeCats.has(q.cat));
+  if(pool.length===0){ alert('Select at least one category.'); return; }
+  activeSet = shuffle(pool);
+  curIdx = 0; results = [];
+  document.getElementById('setupScreen').classList.add('hidden');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  document.getElementById('scoreScreen').classList.add('hidden');
+  renderQuestion();
+};
+
+document.getElementById('quitBtn').onclick = () => {
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('setupScreen').classList.remove('hidden');
+};
+
+document.getElementById('restartBtn').onclick = () => {
+  document.getElementById('scoreScreen').classList.add('hidden');
+  document.getElementById('setupScreen').classList.remove('hidden');
+};
+
+/* ---------- RENDER QUESTION ---------- */
+const qPanel = document.getElementById('questionPanel');
+const submitBtn = document.getElementById('submitBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+function letter(i){ return String.fromCharCode(65+i); }
+
+function renderQuestion(){
+  answered = false;
+  state = {};
+  submitBtn.classList.remove('hidden');
+  submitBtn.disabled = false;
+  nextBtn.classList.add('hidden');
+  const q = activeSet[curIdx];
+  updateProgress();
+
+  let html = '';
+  html += `<span class="tag ${q.ngn ? 'ngn' : 'mc'}">${q.ngn ? 'NGN Item' : 'NCLEX Item'} \u00b7 ${CATS[q.cat]}</span>`;
+  html += `<div class="stem">${q.stem}</div>`;
+
+  if(q.type==='mc'){
+    state.selected = null;
+    q.options.forEach((opt,i)=>{
+      html += `<button class="opt" data-idx="${i}"><span class="oletter">${letter(i)}.</span>${opt}</button>`;
+    });
+  } else if(q.type==='sata'){
+    state.selected = new Set();
+    html += `<p style="color:var(--muted);font-size:0.82rem;margin-top:-4px;">Select all that apply.</p>`;
+    q.options.forEach((opt,i)=>{
+      html += `<button class="opt" data-idx="${i}"><span class="oletter">\u2610</span>${opt}</button>`;
+    });
+  } else if(q.type==='bowtie'){
+    state.left=null; state.mid=new Set(); state.right=new Set();
+    html += `<div class="bowtie">`;
+    html += `<div class="bowtie-col"><h4>${q.left.title}</h4>`;
+    q.left.options.forEach((o,i)=> html += `<button class="opt" data-group="left" data-idx="${i}"><span class="oletter">${letter(i)}.</span>${o}</button>`);
+    html += `</div>`;
+    html += `<div class="bowtie-col"><h4>${q.middle.title}</h4>`;
+    q.middle.options.forEach((o,i)=> html += `<button class="opt" data-group="mid" data-idx="${i}"><span class="oletter">\u2610</span>${o}</button>`);
+    html += `</div>`;
+    html += `<div class="bowtie-col"><h4>${q.right.title}</h4>`;
+    q.right.options.forEach((o,i)=> html += `<button class="opt" data-group="right" data-idx="${i}"><span class="oletter">\u2610</span>${o}</button>`);
+    html += `</div></div>`;
+  } else if(q.type==='matrix'){
+    state.rowPicks = new Array(q.rows.length).fill(null);
+    html += `<table class="matrixTable"><thead><tr><th>Statement</th>`;
+    q.columns.forEach(c=> html += `<th>${c}</th>`);
+    html += `</tr></thead><tbody>`;
+    q.rows.forEach((r,ri)=>{
+      html += `<tr><td class="stmt">${r.statement}</td>`;
+      q.columns.forEach((c,ci)=>{
+        html += `<td class="pick" data-row="${ri}" data-col="${ci}">\u25CB</td>`;
+      });
+      html += `</tr>`;
+    });
+    html += `</tbody></table>`;
+  } else if(q.type==='cloze'){
+    state.blankPicks = new Array(q.blanks.length).fill(null);
+    let t = q.template;
+    q.blanks.forEach((b,bi)=>{
+      let sel = `<select data-blank="${bi}"><option value="">select...</option>`;
+      b.options.forEach((o,oi)=> sel += `<option value="${oi}">${o}</option>`);
+      sel += `</select>`;
+      t = t.replace(`{${bi}}`, sel);
+    });
+    html += `<div class="cloze-sentence">${t}</div>`;
+  }
+
+  html += `<div id="rationaleArea"></div>`;
+  qPanel.innerHTML = html;
+  wireOptionHandlers(q);
+}
+
+function wireOptionHandlers(q){
+  if(q.type==='mc'){
+    qPanel.querySelectorAll('.opt').forEach(btn=>{
+      btn.onclick = () => {
+        if(answered) return;
+        qPanel.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.selected = parseInt(btn.dataset.idx);
+      };
+    });
+  } else if(q.type==='sata'){
+    qPanel.querySelectorAll('.opt').forEach(btn=>{
+      btn.onclick = () => {
+        if(answered) return;
+        const i = parseInt(btn.dataset.idx);
+        if(state.selected.has(i)){ state.selected.delete(i); btn.classList.remove('selected'); btn.querySelector('.oletter').textContent='\u2610'; }
+        else { state.selected.add(i); btn.classList.add('selected'); btn.querySelector('.oletter').textContent='\u2611'; }
+      };
+    });
+  } else if(q.type==='bowtie'){
+    qPanel.querySelectorAll('[data-group="left"]').forEach(btn=>{
+      btn.onclick = () => {
+        if(answered) return;
+        qPanel.querySelectorAll('[data-group="left"]').forEach(b=>b.classList.remove('selected'));
+        btn.classList.add('selected');
+        state.left = parseInt(btn.dataset.idx);
+      };
+    });
+    ['mid','right'].forEach(grp=>{
+      qPanel.querySelectorAll(`[data-group="${grp}"]`).forEach(btn=>{
+        btn.onclick = () => {
+          if(answered) return;
+          const i = parseInt(btn.dataset.idx);
+          const set = grp==='mid' ? state.mid : state.right;
+          if(set.has(i)){ set.delete(i); btn.classList.remove('selected'); btn.querySelector('.oletter').textContent='\u2610'; }
+          else {
+            if(set.size>=2) return; // max 2
+            set.add(i); btn.classList.add('selected'); btn.querySelector('.oletter').textContent='\u2611';
+          }
+        };
+      });
+    });
+  } else if(q.type==='matrix'){
+    qPanel.querySelectorAll('.pick').forEach(td=>{
+      td.onclick = () => {
+        if(answered) return;
+        const row = parseInt(td.dataset.row), col = parseInt(td.dataset.col);
+        qPanel.querySelectorAll(`.pick[data-row="${row}"]`).forEach(t=>{t.classList.remove('selected'); t.textContent='\u25CB';});
+        td.classList.add('selected'); td.textContent='\u25CF';
+        state.rowPicks[row] = col;
+      };
+    });
+  } else if(q.type==='cloze'){
+    qPanel.querySelectorAll('select').forEach(sel=>{
+      sel.onchange = () => {
+        state.blankPicks[parseInt(sel.dataset.blank)] = sel.value===''? null : parseInt(sel.value);
+      };
+    });
+  }
+}
+
+/* ---------- SUBMIT / SCORING ---------- */
+submitBtn.onclick = () => {
+  const q = activeSet[curIdx];
+  let correct = false;
+
+  if(q.type==='mc'){
+    if(state.selected===null){ alert('Select an answer.'); return; }
+    correct = state.selected === q.correct;
+    qPanel.querySelectorAll('.opt').forEach((btn,i)=>{
+      btn.classList.add('disabled');
+      if(i===q.correct) btn.classList.add('correct');
+      else if(i===state.selected) btn.classList.add('incorrect');
+    });
+    renderRationaleList(q.options, q.rationale, q.correct, [state.selected]);
+  }
+  else if(q.type==='sata'){
+    if(state.selected.size===0){ alert('Select at least one option.'); return; }
+    const chosen = [...state.selected].sort();
+    const want = [...q.correct].sort();
+    correct = JSON.stringify(chosen)===JSON.stringify(want);
+    qPanel.querySelectorAll('.opt').forEach((btn,i)=>{
+      btn.classList.add('disabled');
+      const isCorrectOpt = q.correct.includes(i);
+      const wasChosen = state.selected.has(i);
+      if(isCorrectOpt && wasChosen) btn.classList.add('correct');
+      else if(isCorrectOpt && !wasChosen) btn.classList.add('correct');
+      else if(!isCorrectOpt && wasChosen) btn.classList.add('incorrect');
+    });
+    renderRationaleList(q.options, q.rationale, null, chosen, q.correct);
+  }
+  else if(q.type==='bowtie'){
+    if(state.left===null || state.mid.size!==2 || state.right.size!==2){ alert('Complete all three sections (1 condition, 2 actions, 2 parameters).'); return; }
+    const midOk = JSON.stringify([...state.mid].sort())===JSON.stringify([...q.middle.correct].sort());
+    const rightOk = JSON.stringify([...state.right].sort())===JSON.stringify([...q.right.correct].sort());
+    correct = (state.left===q.left.correct) && midOk && rightOk;
+    qPanel.querySelectorAll('[data-group="left"]').forEach((btn,i)=>{
+      btn.classList.add('disabled');
+      if(i===q.left.correct) btn.classList.add('correct');
+      else if(i===state.left) btn.classList.add('incorrect');
+    });
+    qPanel.querySelectorAll('[data-group="mid"]').forEach((btn,i)=>{
+      btn.classList.add('disabled');
+      if(q.middle.correct.includes(i)) btn.classList.add('correct');
+      else if(state.mid.has(i)) btn.classList.add('incorrect');
+    });
+    qPanel.querySelectorAll('[data-group="right"]').forEach((btn,i)=>{
+      btn.classList.add('disabled');
+      if(q.right.correct.includes(i)) btn.classList.add('correct');
+      else if(state.right.has(i)) btn.classList.add('incorrect');
+    });
+    document.getElementById('rationaleArea').innerHTML = `<div class="rationaleBox"><h4>Rationale</h4><div class="overallRat">${q.rationale}</div></div>`;
+  }
+  else if(q.type==='matrix'){
+    if(state.rowPicks.some(p=>p===null)){ alert('Make a selection for every row.'); return; }
+    correct = q.rows.every((r,ri)=> state.rowPicks[ri]===r.correctCol);
+    q.rows.forEach((r,ri)=>{
+      qPanel.querySelectorAll(`.pick[data-row="${ri}"]`).forEach(td=>{
+        const col = parseInt(td.dataset.col);
+        td.style.cursor='default';
+        if(col===r.correctCol){ td.classList.add('correct'); td.textContent='\u2713'; }
+        else if(state.rowPicks[ri]===col){ td.classList.add('incorrect'); td.textContent='\u2717'; }
+      });
+    });
+    let rat = `<div class="rationaleBox"><h4>Rationale</h4>`;
+    q.rows.forEach(r=>{ rat += `<div class="ratItem right"><strong>${r.statement}</strong><br>${r.rationale}</div>`; });
+    rat += `</div>`;
+    document.getElementById('rationaleArea').innerHTML = rat;
+  }
+  else if(q.type==='cloze'){
+    if(state.blankPicks.some(p=>p===null)){ alert('Complete every blank.'); return; }
+    correct = q.blanks.every((b,bi)=>state.blankPicks[bi]===b.correct);
+    qPanel.querySelectorAll('select').forEach(sel=>{
+      const bi = parseInt(sel.dataset.blank);
+      sel.disabled = true;
+      sel.classList.add(state.blankPicks[bi]===q.blanks[bi].correct ? 'correct' : 'incorrect');
+    });
+    document.getElementById('rationaleArea').innerHTML = `<div class="rationaleBox"><h4>Rationale</h4><div class="overallRat">${q.rationale}</div></div>`;
+  }
+
+  results.push({q, correct});
+  answered = true;
+  submitBtn.classList.add('hidden');
+  nextBtn.classList.remove('hidden');
+  updateRunningScore();
+};
+
+function renderRationaleList(options, rationaleArr, correctIdx, chosenArr, correctArr){
+  let html = `<div class="rationaleBox"><h4>Rationale</h4>`;
+  options.forEach((opt,i)=>{
+    const isRight = correctArr ? correctArr.includes(i) : i===correctIdx;
+    html += `<div class="ratItem ${isRight?'right':'wrong'}"><strong>${letter(i)}. ${opt}</strong><br>${rationaleArr[i]}</div>`;
+  });
+  html += `</div>`;
+  document.getElementById('rationaleArea').innerHTML = html;
+}
+
+nextBtn.onclick = () => {
+  curIdx++;
+  if(curIdx >= activeSet.length){ showScoreScreen(); }
+  else { renderQuestion(); }
+};
+
+function updateProgress(){
+  const pct = Math.round((curIdx/activeSet.length)*100);
+  document.getElementById('progressFill').style.width = pct+'%';
+  document.getElementById('progressLabel').textContent = `Question ${curIdx+1} of ${activeSet.length}`;
+}
+function updateRunningScore(){
+  const correctCount = results.filter(r=>r.correct).length;
+  document.getElementById('runningScore').textContent = `Score: ${correctCount}/${results.length}`;
+}
+
+/* ---------- SCORE SCREEN ---------- */
+function showScoreScreen(){
+  document.getElementById('quizScreen').classList.add('hidden');
+  document.getElementById('scoreScreen').classList.remove('hidden');
+  const total = results.length;
+  const correctCount = results.filter(r=>r.correct).length;
+  const pct = Math.round((correctCount/total)*100);
+  document.getElementById('finalPct').textContent = pct+'%';
+  document.getElementById('finalFrac').textContent = `${correctCount} / ${total} correct`;
+
+  const byCat = {};
+  Object.keys(CATS).forEach(k=>byCat[k]={c:0,t:0});
+  results.forEach(r=>{ byCat[r.q.cat].t++; if(r.correct) byCat[r.q.cat].c++; });
+  let bhtml = '';
+  Object.keys(CATS).forEach(k=>{
+    if(byCat[k].t===0) return;
+    bhtml += `<div class="breakdownRow"><span>${CATS[k]}</span><span class="frac">${byCat[k].c}/${byCat[k].t}</span></div>`;
+  });
+  document.getElementById('breakdownBox').innerHTML = bhtml;
+
+  let rhtml = '';
+  results.forEach((r,i)=>{
+    rhtml += `<div class="review-item ${r.correct?'hit':'miss'}"><strong>Q${i+1} \u00b7 ${r.q.topic}</strong> \u2014 ${r.correct?'Correct':'Review needed'}</div>`;
+  });
+  document.getElementById('reviewBox').innerHTML = rhtml;
+}
+</script>
+</body>
+</html>
